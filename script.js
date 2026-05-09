@@ -1,4 +1,4 @@
-const YOUTUBE_API_KEY = "AIzaSyBp2qY_kbd4Gei70yoh3wVdycGUstSQCww"; 
+const YOUTUBE_API_KEY = "AIzaSyCksgDlqf3mHHgWYD3G5lPLO-24YmZXl0I"; 
 const YOUTUBE_API_BASE = "https://www.googleapis.com/youtube/v3";
 const DEFAULT_QUERIES = ["latest bollywood songs 2024", "punjabi hip hop", "lofi chill india"];
 
