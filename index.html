@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="description" content="PlayByUjjwal - Deep Space Audio">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>PlayByUjjwal</title>
+</head>
+<body>
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="black-hole-logo"><i class="fas fa-play" style="color: var(--accent-secondary);"></i></div>
+            <h1 class="splash-title">PlayByUjjwal</h1>
+            <p class="splash-subtitle" style="color: var(--accent-secondary);">@STACKBYUJJWAL VIBES</p>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title"><i class="fas fa-user-astronaut"></i> Profile</h2>
+            <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-content">
+            <div class="profile-info">
+                <div class="profile-avatar"><i class="fas fa-user"></i></div>
+                <h3>Ujjwal Sharma</h3>
+                <p>@StackByUjjwal</p>
+            </div>
+            <ul class="sidebar-menu">
+                <li id="menuSettings"><i class="fas fa-cog"></i> Settings</li>
+                <li id="menuTheme"><i class="fas fa-moon"></i> Dark Theme (Active)</li>
+                <li id="menuEqualizer"><i class="fas fa-sliders-h"></i> Equalizer</li>
+                <li id="menuAbout"><i class="fas fa-info-circle"></i> About PlayByUjjwal</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="app" class="app hidden">
+        <main class="main-content">
+            <header class="top-header">
+                <div class="logo">
+                    <span class="logo-text">PlayByUjjwal</span>
+                </div>
+                <div class="header-actions">
+                    <div class="user-avatar" id="profileBtn"><i class="fas fa-user-astronaut"></i></div>
+                </div>
+            </header>
+
+            <div class="page-content" id="pageContent">
+                <div class="page active" id="homePage">
+                    <section class="content-section">
+                        <div class="section-header">
+                            <h3 class="section-title"><i class="fas fa-fire" style="color: var(--accent-secondary);"></i> Trending Tracks</h3>
+                        </div>
+                        <div class="songs-grid" id="trendingSongs"></div>
+                    </section>
+                </div>
+
+                <div class="page" id="searchPage">
+                    <div class="search-header-container mb-4">
+                        <h2 class="page-title mb-3">Explore</h2>
+                        <div class="search-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" class="search-input" placeholder="Search songs, artists..." autocomplete="off">
+                            <button class="search-clear" id="searchClear"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <section class="content-section">
+                        <div class="search-results" id="searchResults">
+                            <div class="empty-state">
+                                <i class="fas fa-headphones empty-icon"></i>
+                                <p>Discover new music...</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="page" id="playlistsPage">
+                    <div class="page-header-with-action mb-4">
+                        <h2 class="page-title">Your Library</h2>
+                    </div>
+                    <div class="library-section">
+                        <h3 class="section-title"><i class="fas fa-heart" style="color: var(--accent-secondary);"></i> Favorites</h3>
+                        <div id="favoritesList" class="songs-list"></div>
+                    </div>
+                    <div class="library-section mt-4">
+                        <h3 class="section-title"><i class="fas fa-history text-warning"></i> Recently Played</h3>
+                        <div id="recentlyPlayed" class="songs-list"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active" data-page="home"><i class="fas fa-home"></i><span>Home</span></div>
+            <div class="nav-item" data-page="search"><i class="fas fa-search"></i><span>Search</span></div>
+            <div class="nav-item" data-page="playlists"><i class="fas fa-book-open"></i><span>Library</span></div>
+        </nav>
+
+        <div class="mini-player" id="miniPlayer">
+            <div class="mini-player-progress" id="miniProgressContainer">
+                <div class="progress-fill" id="miniProgressFill"></div>
+            </div>
+            <div class="mini-player-content">
+                <div class="mini-song-info" id="miniSongInfo">
+                    <div class="mini-thumbnail" id="miniThumbnail"><i class="fas fa-music"></i></div>
+                    <div class="mini-text">
+                        <p class="mini-title" id="miniTitle">Loading...</p>
+                        <p class="mini-artist" id="miniArtist">PlayByUjjwal</p>
+                    </div>
+                </div>
+                <div class="mini-controls">
+                    <button class="mini-btn icon-btn" id="miniFavoriteBtn"><i class="far fa-heart"></i></button>
+                    <button class="mini-btn play-btn" id="miniPlayBtn"><i class="fas fa-play"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="fullscreen-player" id="fullscreenPlayer">
+            <div class="player-background">
+                <div class="bg-blur" id="bgBlur"></div>
+                <div class="dark-overlay"></div>
+            </div>
+            
+            <div class="player-content">
+                <div class="player-header">
+                    <button class="player-btn icon-btn" id="collapsePlayerBtn"><i class="fas fa-chevron-down"></i></button>
+                    <span class="player-header-title">NOW PLAYING</span>
+                    <button class="player-btn icon-btn" id="playerOptionsBtn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                
+                <div class="player-art-section">
+                    <div class="album-art-container">
+                        <img src="" alt="Album Art" id="albumArtImg" class="album-art">
+                    </div>
+                </div>
+                
+                <div class="player-info-container">
+                    <div class="player-info">
+                        <h2 class="player-title" id="playerTitle">Song Title</h2>
+                        <p class="player-artist" id="playerArtist">Artist Name</p>
+                    </div>
+                    <button class="icon-btn" id="playerFavoriteBtn"><i class="far fa-heart"></i></button>
+                </div>
+                
+                <div class="player-progress-section">
+                    <div class="progress-container" id="playerProgressContainer">
+                        <div class="progress-bar" id="playerProgressBar">
+                            <div class="progress-fill" id="playerProgressFill"></div>
+                            <div class="progress-thumb" id="playerProgressThumb"></div>
+                        </div>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">0:00</span>
+                    </div>
+                </div>
+                
+                <div class="player-controls">
+                    <button class="control-btn secondary-btn" id="shuffleBtn"><i class="fas fa-random"></i></button>
+                    <button class="control-btn" id="prevBtn"><i class="fas fa-step-backward"></i></button>
+                    <button class="control-btn play-pause-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
+                    <button class="control-btn" id="nextBtn"><i class="fas fa-step-forward"></i></button>
+                    <button class="control-btn secondary-btn" id="repeatBtn"><i class="fas fa-redo"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="youtubePlayerWrapper" style="position: fixed; width: 300px; height: 300px; opacity: 0.01; pointer-events: none; top: -1000px; left: -1000px; z-index: -9999;">
+        <div id="youtubePlayerContainer"></div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
